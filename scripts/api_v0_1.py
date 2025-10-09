@@ -11,6 +11,10 @@ app = FastAPI()
 def read_root():
     return RedirectResponse(url='/docs', status_code=status.HTTP_302_FOUND)
 
+@app.get('/health')
+def health_check():
+    return {"status": "ok", "version": "v0.1"}
+
 @app.post('/predict')
 def predict(age:int, sex: int, bmi:float, bp:int,	s1:float, s2: float, s3:float, s4:float, s5:float,s6:float):
     model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/model_diabetes_v0.1.pkl'))
