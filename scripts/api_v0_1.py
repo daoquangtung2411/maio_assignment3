@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, status
 from fastapi.responses import RedirectResponse
+from pydantic import BaseModel
 import pickle
 import os
 import numpy as np
@@ -15,8 +16,21 @@ def read_root():
 def health_check():
     return {"status": "ok", "version": "v0.1"}
 
+
+class DiabetesFeatures(BaseModel):
+    age: float
+    sex: float
+    bmi: float
+    bp: float
+    s1: float
+    s2: float
+    s3: float
+    s4: float
+    s5: float
+    s6: float
+
 @app.post('/predict')
-def predict(age:int, sex: int, bmi:float, bp:int,	s1:float, s2: float, s3:float, s4:float, s5:float,s6:float):
+def predict(features: DiabetesFeatures):
     model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/model_diabetes_v0.1.pkl'))
     scaler_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/scaler_diabetes_v0.1.pkl'))
     if not os.path.exists(model_path):
@@ -26,7 +40,7 @@ def predict(age:int, sex: int, bmi:float, bp:int,	s1:float, s2: float, s3:float,
         model = pickle.load(file)
     with open(scaler_path, 'rb') as file:
         scaler = pickle.load(file)
-    X = np.array([[age, sex, bmi, bp, s1, s2, s3, s4, s5, s6]])
+    X = np.array([[features.age, features.sex, features.bmi, features.bp, features.s1, features.s2, features.s3, features.s4, features.s5, features.s6]])
     X_scaled = scaler.transform(X)
     prediction = model.predict(X_scaled)
     return {'prediction': prediction[0]}
