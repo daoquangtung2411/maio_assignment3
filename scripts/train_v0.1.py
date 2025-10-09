@@ -8,6 +8,7 @@ import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
 
 dataset = load_diabetes(as_frame=True, scaled=False).frame
 print('Dataset sample:')
@@ -80,12 +81,13 @@ axes[1, 0].set_ylabel('Features', fontsize=12)
 axes[1,0].set_title('Feature importance')
 axes[1,0].grid(True, alpha=0.3, axis='x')
 
+os.makedirs('models', exist_ok=True)
 plt.tight_layout()
-plt.savefig('../models/model_diabetes_v0.1_result.png', dpi=300, bbox_inches='tight')
+plt.savefig('models/model_diabetes_v0.1_result.png', dpi=300, bbox_inches='tight')
 
-with open('../models/scaler_diabetes_v0.1.pkl', 'wb') as file:
+with open('models/scaler_diabetes_v0.1.pkl', 'wb') as file:
     pickle.dump(scaler, file)
-with open('../models/model_diabetes_v0.1.pkl', 'wb') as file:
+with open('models/model_diabetes_v0.1.pkl', 'wb') as file:
     pickle.dump(model, file)
-# joblib.dump(model, '../models/model_diabetes_v0.1.pkl')
+
 print('Save scaler and models to ../models folder')
