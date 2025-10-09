@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.1 .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.2 .
     
     - name: Push Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.1
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.2
