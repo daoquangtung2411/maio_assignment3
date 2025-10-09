@@ -1,0 +1,13 @@
+from python:3.11-slim
+
+WORKDIR /app
+
+COPY . /app
+
+RUN pip install --no-cache-dir requirements.txt
+
+EXPOSE 8386
+
+ENV MODEL_PATH=/app/model/diabetes_v0.1.pkl
+
+CMD ["uvicorn", "scripts.api_v0.1:app", "--host", "0.0.0.0", "--port", "8386"]
