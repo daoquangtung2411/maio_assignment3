@@ -28,7 +28,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Train and save model
-      run: python scripts/train_v0.1.py
+      run: python scripts/train_v0_1.py
     
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.2 .
+      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.3 .
     
     - name: Push Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.2
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:v0.1.3
