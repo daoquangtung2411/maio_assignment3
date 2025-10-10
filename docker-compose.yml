@@ -1,8 +1,8 @@
 services:
   # Production API
   dp_production_v0.1:
-    image: ghcr.io/daoquangtung2411/maio-assignment3/diabetes_progression:v0.1.6
-    container_name: diabetes_progression_v0.1
+    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.7
+    container_name: diabetes_progression_production_v0.1
     ports:
       - "8386:8386"
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: diabetes_progression_v0.1
+    container_name: diabetes_progression_retrain_v0.1
     ports:
       - "8386:8386"
     volumes:

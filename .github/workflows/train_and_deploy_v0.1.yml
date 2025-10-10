@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION: v0.1.6
+  VERSION: v0.1.7
 
 jobs:
   build-and-push:

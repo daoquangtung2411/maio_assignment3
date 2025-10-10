@@ -16,7 +16,6 @@ def read_root():
 def health_check():
     return {"status": "ok", "version": "v0.1"}
 
-
 class DiabetesFeatures(BaseModel):
     age: float
     sex: float
