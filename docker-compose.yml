@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      container_name: diabetes_progression_v0.1
+    container_name: diabetes_progression_v0.1
     ports:
       - "8386:8386"
     volumes:
