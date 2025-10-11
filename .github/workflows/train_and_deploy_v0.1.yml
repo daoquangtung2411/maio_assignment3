@@ -37,7 +37,7 @@ jobs:
       
       - name: Run Pylint
         run:
-          pylint scripts/ --exit_zero --output-format=parseable > pylint-report.txt
+          pylint scripts/ --exit-zero --output-format=parseable > pylint-report.txt
 
   build-and-push:
     runs-on: ubuntu-latest
