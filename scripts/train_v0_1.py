@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
-dataset = load_diabetes(as_frame=True, scaled=False).frame
+dataset = load_diabetes(as_frame=True).frame
 print('Dataset sample:')
 print(dataset.head())
 print('Dataset info:')
@@ -21,13 +21,13 @@ print(dataset.describe())
 X = dataset.drop(columns=['target'])
 y = dataset['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)
-X_test_scaled = scaler.transform(X_test)
+# scaler = StandardScaler()
+# X_train_scaled = scaler.fit_transform(X_train)
+# X_test_scaled = scaler.transform(X_test)
 
 model = LinearRegression()
-model.fit(X_train_scaled, y_train)
-y_test_pred = model.predict(X_test_scaled)
+model.fit(X_train, y_train)
+y_test_pred = model.predict(X_test)
 rmse = root_mean_squared_error(y_test, y_test_pred)
 r2 = r2_score(y_test, y_test_pred)
 mae = mean_absolute_error(y_test, y_test_pred)
@@ -85,8 +85,8 @@ os.makedirs('models', exist_ok=True)
 plt.tight_layout()
 plt.savefig('models/model_diabetes_v0.1_result.png', dpi=300, bbox_inches='tight')
 
-with open('models/scaler_diabetes_v0.1.pkl', 'wb') as file:
-    pickle.dump(scaler, file)
+# with open('models/scaler_diabetes_v0.1.pkl', 'wb') as file:
+#     pickle.dump(scaler, file)
 with open('models/model_diabetes_v0.1.pkl', 'wb') as file:
     pickle.dump(model, file)
 

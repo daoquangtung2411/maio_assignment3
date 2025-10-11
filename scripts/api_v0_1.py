@@ -31,15 +31,15 @@ class DiabetesFeatures(BaseModel):
 @app.post('/predict')
 def predict(features: DiabetesFeatures):
     model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/model_diabetes_v0.1.pkl'))
-    scaler_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/scaler_diabetes_v0.1.pkl'))
+    # scaler_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../models/scaler_diabetes_v0.1.pkl'))
     if not os.path.exists(model_path):
         raise HTTPException(status_code=404, detail='Model file not found')
 
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
-    with open(scaler_path, 'rb') as file:
-        scaler = pickle.load(file)
+    # with open(scaler_path, 'rb') as file:
+    #     scaler = pickle.load(file)
     X = np.array([[features.age, features.sex, features.bmi, features.bp, features.s1, features.s2, features.s3, features.s4, features.s5, features.s6]])
-    X_scaled = scaler.transform(X)
-    prediction = model.predict(X_scaled)
+    # X_scaled = scaler.transform(X)
+    prediction = model.predict(X)
     return {'prediction': prediction[0]}
