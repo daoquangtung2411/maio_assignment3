@@ -1,29 +1,27 @@
+"""
+
+Code base for train and save prediction model
+
+"""
+
+import os
+import pickle
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, root_mean_squared_error, mean_absolute_error
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import StandardScaler
-import pickle
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 import pandas as pd
-import os
 
-dataset = load_diabetes(as_frame=True).frame
-print('Dataset sample:')
-print(dataset.head())
-print('Dataset info:')
-print(dataset.info())
-print('Dataset description')
-print(dataset.describe())
 
-X = dataset.drop(columns=['target'])
-y = dataset['target']
+dataset = load_diabetes(as_frame=True)
+print(dataset)
+
+X = dataset["frame"].drop(columns=['target'])
+y = dataset["frame"]['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# scaler = StandardScaler()
-# X_train_scaled = scaler.fit_transform(X_train)
-# X_test_scaled = scaler.transform(X_test)
 
 model = LinearRegression()
 model.fit(X_train, y_train)
@@ -45,12 +43,15 @@ features_importance = pd.DataFrame({
     'Abs_Coefficient': np.abs(model.coef_)
 }).sort_values('Abs_Coefficient', ascending=False)
 print('Features importance:')
-print(tabulate(features_importance[['Feature', 'Coefficient']].values, headers=['Feature', 'Coefficient'], tablefmt='grid', floatfmt='.2f'))
+print(tabulate(
+            features_importance[['Feature', 'Coefficient']].values,
+            headers=['Feature', 'Coefficient'],
+            tablefmt='grid',
+            floatfmt='.2f'))
 
 fig, axes = plt.subplots(2, 2, figsize=(14,10))
 
 # Scatter plot with lines
-
 axes[0,0].scatter(y_test, y_test_pred, alpha=0.7, edgecolors='k', linewidth=0.5)
 z = np.polyfit(y_test, y_test_pred, 1)
 p = np.poly1d(z)
@@ -85,8 +86,6 @@ os.makedirs('models', exist_ok=True)
 plt.tight_layout()
 plt.savefig('models/model_diabetes_v0.1_result.png', dpi=300, bbox_inches='tight')
 
-# with open('models/scaler_diabetes_v0.1.pkl', 'wb') as file:
-#     pickle.dump(scaler, file)
 with open('models/model_diabetes_v0.1.pkl', 'wb') as file:
     pickle.dump(model, file)
 
