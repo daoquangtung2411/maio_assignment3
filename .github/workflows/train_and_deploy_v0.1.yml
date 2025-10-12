@@ -117,9 +117,9 @@ jobs:
     steps:
       - name: Container Smoke Test
         run: |
-          docker run -d -p 8080:8080 --name diabetes_app_test ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:${{ env.VERSION }}
+          docker run -d -p 8386:8386 --name diabetes_app_test ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:${{ env.VERSION }}
           sleep 5
-          curl -f https://localhost:8080/health || (echo "Smoke test failed" && docker logs diabetes_app_test && exit 1)
+          curl -f http://localhost:8386/health || (echo "Smoke test failed" && docker logs diabetes_app_test && exit 1)
           echo "Smoke test passed"
           docker rm -f diabetes_app_test
   
