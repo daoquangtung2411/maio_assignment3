@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from fastapi.testclient import TestClient
-from scripts.api_v0_1 import app
+from scripts.api_v0_2 import app
 
 client = TestClient(app)
 
@@ -33,4 +33,4 @@ def test_predict(monkeypatch):
         }
     
     response = client.post("/predict", json=sample_input)
-    assert response.status_code == 404
+    assert response.status_code == 200

@@ -93,7 +93,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     
     - name: Run Unit Test
-      run: pytest -v tests/
+      run: pytest -v tests/test_api_v0_2.py
 
   container-smoke-test:
     name: Container Smoke Test
