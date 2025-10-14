@@ -1,7 +1,7 @@
 services:
   # Production API
   dp_production_v0.1:
-    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.19
+    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.20
     container_name: diabetes_progression_production_v0.1
     ports:
       - "8386:8386"
