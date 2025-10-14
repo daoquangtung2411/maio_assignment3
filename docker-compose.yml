@@ -1,10 +1,21 @@
 services:
   # Production API
   dp_production_v0.1:
-    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.18
+    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.19
     container_name: diabetes_progression_production_v0.1
     ports:
       - "8386:8386"
+    restart: unless-stopped
+    environment:
+      - ENV=production
+    volumes:
+      - ./logs:/app/logs
+
+  dp_production_v0.2:
+    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.1
+    container_name: diabetes_progression_production_v0.2
+    ports:
+      - "8686:8686"
     restart: unless-stopped
     environment:
       - ENV=production
@@ -23,3 +34,16 @@ services:
     environment:
       - ENV=developement
     command: bash -c "python scripts/train_v0_1.py && uvicorn scripts.api_v0_1:app --host 0.0.0.0 --port 8386"
+
+  dp_retrain_v0.2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: diabetes_progression_retrain_v0.2
+    ports:
+      - "8686:8686"
+    volumes:
+      - .:/app
+    environment:
+      - ENV=developement
+    command: bash -c "python scripts/train_v0_2.py && uvicorn scripts.api_v0_2:app --host 0.0.0.0 --port 8686"

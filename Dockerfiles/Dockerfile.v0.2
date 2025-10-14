@@ -6,9 +6,10 @@ COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8386
+EXPOSE 8686
 
-ENV MODEL_PATH=/app/models/model_diabetes_v0.1.pkl
-ENV SCALER_PATH=/app/models/scaler_diabetes_v0.1.pkl
+ENV MODEL_PATH=/app/models/model_diabetes_v0.2.pkl
+ENV SCALER_PATH=/app/models/scaler_diabetes_v0.2.pkl
+ENV SELECTOR_PATH=/app/models/selector_diabetes_v0.2.pkl
 
-CMD ["uvicorn", "scripts.api_v0_1:app", "--host", "0.0.0.0", "--port", "8386"]
+CMD ["uvicorn", "scripts.api_v0_2:app", "--host", "0.0.0.0", "--port", "8686"]

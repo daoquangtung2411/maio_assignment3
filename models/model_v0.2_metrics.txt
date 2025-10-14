@@ -1,0 +1,6 @@
+Model version 0.2 metrics (Random Forest Regressor)
+RMSE: 52.25
+R2 score: 0.48
+MAE: 42.97
+Precision@75: 0.68
+Recall@75: 0.71

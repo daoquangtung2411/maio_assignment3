@@ -1,6 +1,8 @@
+# pylint: disable=duplicate-code
+
 """
 
-Code base for train and save prediction model
+Code base for train and save prediction model version 0.1
 
 """
 
@@ -10,6 +12,7 @@ from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, root_mean_squared_error, mean_absolute_error
 from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
@@ -22,10 +25,13 @@ print(dataset)
 X = dataset["frame"].drop(columns=['target'])
 y = dataset["frame"]['target']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
 model = LinearRegression()
-model.fit(X_train, y_train)
-y_test_pred = model.predict(X_test)
+model.fit(X_train_scaled, y_train)
+y_test_pred = model.predict(X_test_scaled)
 rmse = root_mean_squared_error(y_test, y_test_pred)
 r2 = r2_score(y_test, y_test_pred)
 mae = mean_absolute_error(y_test, y_test_pred)
@@ -36,6 +42,12 @@ metrics = [
 ]
 print('Model performance:')
 print(tabulate(metrics, headers=['Metric', 'Value'], tablefmt='grid'))
+
+with open('models/model_v0.1_metrics.txt', 'w', encoding='utf-8') as f:
+    f.write('Model version 0.1 metrics (Linear Regression)\n')
+    for metric_name, metric_val in metrics:
+        f.write(f'{metric_name}: {metric_val}\n')
+
 
 features_importance = pd.DataFrame({
     'Feature': X.columns,
@@ -85,6 +97,9 @@ axes[1,0].grid(True, alpha=0.3, axis='x')
 os.makedirs('models', exist_ok=True)
 plt.tight_layout()
 plt.savefig('models/model_diabetes_v0.1_result.png', dpi=300, bbox_inches='tight')
+
+with open('models/scaler_diabetes_v0.1.pkl', 'wb') as file:
+    pickle.dump(scaler, file)
 
 with open('models/model_diabetes_v0.1.pkl', 'wb') as file:
     pickle.dump(model, file)

@@ -2,7 +2,7 @@
 
 """
 
-API version 0.1 that get model health check and predict
+API version 0.2 that get model health check and predict
 
 """
 
@@ -69,11 +69,15 @@ def predict(features: DiabetesFeatures):
 
     model_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__),
-                     '../models/model_diabetes_v0.1.pkl'))
+                     '../models/model_diabetes_v0.2.pkl'))
 
     scaler_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__),
-                     '../models/scaler_diabetes_v0.1.pkl'))
+                     '../models/scaler_diabetes_v0.2.pkl'))
+
+    selector_path = os.path.abspath(
+        os.path.join(os.path.dirname(__file__),
+                     '../models/selector_diabetes_v0.2.pkl'))
 
     if not os.path.exists(model_path):
         raise HTTPException(status_code=404, detail='Model file not found')
@@ -81,11 +85,17 @@ def predict(features: DiabetesFeatures):
     if not os.path.exists(scaler_path):
         raise HTTPException(status_code=404, detail='Scaler file not found')
 
+    if not os.path.exists(scaler_path):
+        raise HTTPException(status_code=404, detail='Selector file not found')
+
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
 
     with open(scaler_path, 'rb') as file:
         scaler = pickle.load(file)
+
+    with open(selector_path, 'rb') as file:
+        selector = pickle.load(file)
 
     feature = np.array([[
                     features.age,
@@ -100,5 +110,6 @@ def predict(features: DiabetesFeatures):
                     features.s6
                     ]])
     feature_scaled = scaler.transform(feature)
-    prediction = model.predict(feature_scaled)
+    feature_selected = selector.transform(feature_scaled)
+    prediction = model.predict(feature_selected)
     return {'prediction': prediction[0]}

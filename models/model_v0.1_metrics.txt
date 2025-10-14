@@ -1,0 +1,4 @@
+Model version 0.1 metrics (Linear Regression)
+RMSE: 53.85
+R2 score: 0.45
+MAE: 42.79
