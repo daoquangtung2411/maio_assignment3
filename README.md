@@ -33,9 +33,15 @@ maio_assignment3/
 
 # Option 1:
 # Pull image
-docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.7
+# Version 0.1
+docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.19
+# Version 0.2
+docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.0
 # Run container
-docker run -d -p 8386:8386 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.7
+# Version 0.1
+docker run -d -p 8386:8386 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.19
+# Version 0.2
+docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.19
 
 # Option 2:
 # Download docker compose file
@@ -45,7 +51,10 @@ curl -0 https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main
 Invoke_WebRequest -Uri "https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main/docker-compose.yml" -OutFile "docker-compose.yml"
 )
 # Run container
+# Version 0.1
 docker compose up -d dp_production_v0.1
+# Version 0.2
+docker compose up -d dp_production_v0.2
 ```
 
 ## Retrain or reproduce locally
@@ -56,7 +65,10 @@ docker compose up -d dp_production_v0.1
 git clone https://github.com/daoquangtung2411/maio_assignment3.git
 
 # Run docker
+# Version 0.1
 docker compose up -d dp_retrain_v0.1
+# Version 0.2
+docker compose up -d dp_retrain_v0.2
 
 ```
 
@@ -64,11 +76,17 @@ docker compose up -d dp_retrain_v0.1
 
 ```bash
 # Health check
+# Version 0.1
 curl -X GET http://localhost:8386/health
+# Version 0.2
+curl -X GET http://localhost:8686/health
 
 # Prediction
-
+# Version 0.1
 curl -X POST http://localhost:8386/predict -H "Content-Type:application/json" -d '{"age":10,"sex":1,"bmi":19,"bp":123,"s1":20,"s2":30,"s3":40,"s4":50,"s5":60,"s6":70}'
+
+# Version 0.2
+curl -X POST http://localhost:8686/predict -H "Content-Type:application/json" -d '{"age":10,"sex":1,"bmi":19,"bp":123,"s1":20,"s2":30,"s3":40,"s4":50,"s5":60,"s6":70}'
 ```
 
 ## Port
