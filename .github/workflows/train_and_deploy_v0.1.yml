@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  VERSION: v0.1.14
+  VERSION: ${{ github.ref_name }}
 
 permissions:
   contents: write
@@ -144,7 +144,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Rebuild Docker image for deployment
-      run: docker build -f Dockerfile/Dockerfile.v0.1 -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:${{ env.VERSION }} .
+      run: docker build -f Dockerfiles/Dockerfile.v0.1 -t ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:${{ env.VERSION }} .
     
     - name: Push Docker image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/diabetes_progression:${{ env.VERSION }}
