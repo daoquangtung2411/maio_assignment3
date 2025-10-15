@@ -25,7 +25,7 @@ services:
   dp_retrain_v0.1:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfiles/Dockerfile.v0.1
     container_name: diabetes_progression_retrain_v0.1
     ports:
       - "8386:8386"
@@ -38,7 +38,7 @@ services:
   dp_retrain_v0.2:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfiles/Dockerfile.v0.2
     container_name: diabetes_progression_retrain_v0.2
     ports:
       - "8686:8686"

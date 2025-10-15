@@ -49,12 +49,14 @@ curl -0 https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main
 
 # (If this return error in Windows, please try:
 Invoke_WebRequest -Uri "https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main/docker-compose.yml" -OutFile "docker-compose.yml"
-)
+#)
 # Run container
+*Note: You should set the File Sharing in Docker before run this or else you might run into problem. Add your path to the docker compose folder to Docker in Docker -> Preferences -> Resource -> File Sharing*
 # Version 0.1
 docker compose up -d dp_production_v0.1
 # Version 0.2
 docker compose up -d dp_production_v0.2
+
 ```
 
 ## Retrain or reproduce locally
@@ -63,6 +65,10 @@ docker compose up -d dp_production_v0.2
 # To reproduce repository from scratch, follow below instructions:
 # Clone the repository
 git clone https://github.com/daoquangtung2411/maio_assignment3.git
+
+*Note: You should set the File Sharing in Docker before run this or else you might run into problem. Add your path to the docker compose folder to Docker in Docker -> Preferences -> Resource -> File Sharing*
+# Move to directory
+cd maio_assignment3
 
 # Run docker
 # Version 0.1
