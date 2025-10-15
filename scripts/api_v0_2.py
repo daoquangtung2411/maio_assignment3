@@ -36,7 +36,7 @@ def health_check():
     
     """
 
-    return {"status": "ok", "version": "v0.1"}
+    return {"status": "ok", "version": "v0.2"}
 
 class DiabetesFeatures(BaseModel):
 
