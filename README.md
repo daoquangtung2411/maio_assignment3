@@ -36,12 +36,12 @@ maio_assignment3/
 # Version 0.1
 docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.21
 # Version 0.2
-docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.5
+docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.6
 # Run container
 # Version 0.1
 docker run -d -p 8386:8386 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.21
 # Version 0.2
-docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.5
+docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.6
 
 # Option 2:
 # Download docker compose file

@@ -12,7 +12,7 @@ services:
       - ./logs:/app/logs
 
   dp_production_v0.2:
-    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.5
+    image: ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.6
     container_name: diabetes_progression_production_v0.2
     ports:
       - "8686:8686"
