@@ -36,12 +36,12 @@ maio_assignment3/
 # Version 0.1
 docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.21
 # Version 0.2
-docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.1
+docker pull ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.2
 # Run container
 # Version 0.1
 docker run -d -p 8386:8386 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.1.21
 # Version 0.2
-docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.1
+docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_progression:v0.2.2
 
 # Option 2:
 # Download docker compose file
@@ -83,10 +83,10 @@ curl -X GET http://localhost:8686/health
 
 # Prediction
 # Version 0.1
-curl -X POST http://localhost:8386/predict -H "Content-Type:application/json" -d '{"age":10,"sex":1,"bmi":19,"bp":123,"s1":20,"s2":30,"s3":40,"s4":50,"s5":60,"s6":70}'
+curl -X POST http://localhost:8386/predict -H "Content-Type:application/json" -d '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
 
 # Version 0.2
-curl -X POST http://localhost:8686/predict -H "Content-Type:application/json" -d '{"age":10,"sex":1,"bmi":19,"bp":123,"s1":20,"s2":30,"s3":40,"s4":50,"s5":60,"s6":70}'
+curl -X POST http://localhost:8686/predict -H "Content-Type:application/json" -d '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
 ```
 
 ## Port
