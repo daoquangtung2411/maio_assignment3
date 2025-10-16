@@ -1,6 +1,14 @@
 ## GROUP BC - MAIO ASSIGNMENT 3 - DIABETES PROGRESSION PREDICTOR
 
-This repository is source code for diabetes progression models, submitted as solution to assignment 3 - MAIO course 2025. The prediction model can be use with Docker, and you can run following tasks:
+#### ====== Update 10 Oct 2025 ========
+
+#### Introduce version v0.1
+
+#### ====== Update 16 Oct 2025 ========
+
+#### Introduce version v0.2, find improvement in [CHANGELOG.md](https://github.com/daoquangtung2411/maio_assignment3/maio_assigment3/CHANGELOG.md)
+
+#### This repository is source code for diabetes progression models, submitted as solution to assignment 3 - MAIO course 2025. The prediction model can be use with Docker, and you can run following tasks:
 
 - Run **containerized API** with docker compose and get predictions
 - Retrain model for reproducibility with docker compose
