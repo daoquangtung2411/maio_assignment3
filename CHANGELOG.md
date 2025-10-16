@@ -2,7 +2,7 @@
 
 ### 🔄 What Changed
 
-- Added Ridge (with added GridSearchCV for hyperparameter tuning) and RandomForestRegressor (with added RandomizedSearchCV for hyperparameter tuning). Random Forest showed most improvement compared to other models, and Random Forest hyperparameter was further tune with expanded search space with Grid Search CV (refer to this [EDA file](https://github.com/daoquangtung2411/maio_assignment3/scripts/EDA.ipynb) for more information)
+- Added Ridge (with added GridSearchCV for hyperparameter tuning) and RandomForestRegressor (with added RandomizedSearchCV for hyperparameter tuning). Random Forest showed most improvement compared to other models, and Random Forest hyperparameter was further tune with expanded search space with Grid Search CV (refer to this [EDA file](https://github.com/daoquangtung2411/maio_assignment3/blob/main/scripts/EDA.ipynb) for more information)
 
 - Introduced feature selection (SelectKBest) with (f_regression, k=6) to keep the top 5 predictive features
 

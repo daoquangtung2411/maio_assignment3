@@ -6,7 +6,7 @@
 
 #### ====== Update 16 Oct 2025 ========
 
-#### Introduce version v0.2, find improvement in [CHANGELOG.md](https://github.com/daoquangtung2411/maio_assignment3/maio_assigment3/CHANGELOG.md)
+#### Introduce version v0.2, find improvement in [CHANGELOG.md](https://github.com/daoquangtung2411/maio_assignment3/blob/main/CHANGELOG.md)
 
 #### This repository is source code for diabetes progression models, submitted as solution to assignment 3 - MAIO course 2025. The prediction model can be use with Docker, and you can run following tasks:
 
