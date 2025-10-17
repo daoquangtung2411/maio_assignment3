@@ -103,6 +103,8 @@ curl -X POST http://localhost:8386/predict -H "Content-Type:application/json" -d
 curl -X POST http://localhost:8686/predict -H "Content-Type:application/json" -d '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
 ```
 
+*You can also access the API with GUI at `http://localhost:8386/docs` for **version 0.1** or `http://localhost:8686/docs` for **version 0.2***
+
 ## Port
 
 - **Model v0.1 API**: `http://localhost:8386`
