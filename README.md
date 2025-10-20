@@ -56,7 +56,7 @@ docker run -d -p 8686:8686 ghcr.io/daoquangtung2411/maio_assignment3/diabetes_pr
 curl -0 https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main/docker-compose.yml -o docker-compose.yml
 
 # (If this return error in Windows, please try:
-Invoke_WebRequest -Uri "https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main/docker-compose.yml" -OutFile "docker-compose.yml"
+Invoke-WebRequest 'https://raw.githubusercontent.com/daoquangtung2411/maio_assignment3/main/docker-compose.yml' -OutFile 'docker-compose.yml' New-Item -ItemType Directory -Force logs | Out-Null
 #)
 # Run container
 *Note: You should set the File Sharing in Docker before run this or else you might run into problem. Add your path to the docker compose folder to Docker in Docker -> Preferences -> Resource -> File Sharing*
@@ -86,7 +86,7 @@ docker compose up -d dp_retrain_v0.2
 
 ```
 
-## Run the prediction API
+## Run the prediction API with curl (works with MacOS, Ubuntu, may run into problem with Windows)
 
 ```bash
 # Health check
@@ -101,6 +101,23 @@ curl -X POST http://localhost:8386/predict -H "Content-Type:application/json" -d
 
 # Version 0.2
 curl -X POST http://localhost:8686/predict -H "Content-Type:application/json" -d '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
+```
+
+## Run the prediction API with Invoke-Web-Request (works with Windows)
+
+```bash
+# Health check
+# Version 0.1
+Invoke-RestMethod 'http://localhost:8386/health'
+# Version 0.2
+Invoke-RestMethod 'http://localhost:8686/health'
+
+# Prediction
+# Version 0.1
+Invoke-RestMethod 'http://localhost:8386/predict' -Method Post -ContentType 'application/json' -Body '{"age":0.02,"sex":-0.044,"bmi":0.06,"bp":-0.03,"s1":-0.02,"s2":0.03,"s3":-0.02,"s4":0.02,"s5":0.02,"s6":-0.001}'
+
+# Version 0.2
+Invoke-RestMethod 'http://localhost:8686/predict' -Method Post -ContentType 'application/json' -Body '{"age":0.02,"sex":-0.044,"bmi":0.06,"bp":-0.03,"s1":-0.02,"s2":0.03,"s3":-0.02,"s4":0.02,"s5":0.02,"s6":-0.001}'
 ```
 
 *You can also access the API with GUI at `http://localhost:8386/docs` for **version 0.1** or `http://localhost:8686/docs` for **version 0.2***
